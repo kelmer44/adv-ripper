@@ -1,27 +1,21 @@
 package com.example.demo.view
 
-import com.example.demo.app.Styles
-import javafx.geometry.Orientation
+import com.example.demo.controller.MainController
+import com.example.demo.view.content.ContentView
+import com.example.demo.view.menu.MenuView
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
-    override val root = vbox {
-        menubar {
-            menu {
-                label("File")
-            }
+
+    val controller: MainController by inject()
+
+    override val root = borderpane {
+        top<MenuView>()
+        center<ContentView>()
+        bottom{
+            label("Hola")
+            useMaxWidth = true
         }
-        label(title) {
-            addClass(Styles.heading)
-        }
-        splitpane(orientation = Orientation.HORIZONTAL){
-            vbox {
-                label("Pane 1")
-            }
-            vbox {
-                label("Pane 2")
-                imageview("http://aventuraoriginal.com/media/covers/beneath_a_steel_sky_1143_UKtmkWY.jpg")
-            }
-        }
+
     }
 }
